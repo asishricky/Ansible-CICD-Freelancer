@@ -9,7 +9,7 @@ function UserProfile() {
 
   useEffect(() => {
     // Replace this URL with your actual backend endpoint
-    axios.get(`http://localhost:8080/api/users/${id}`)
+    axios.get(`${API_URL}/api/users/${id}`)
       .then(res => setUserData(res.data))
       .catch(err => console.error(err));
   }, [id]);

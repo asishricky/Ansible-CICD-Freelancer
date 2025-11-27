@@ -27,7 +27,7 @@ function PostJob() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:8080/api/jobs/addjob', {
+      const response = await fetch('${API_URL}/api/jobs/addjob', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',

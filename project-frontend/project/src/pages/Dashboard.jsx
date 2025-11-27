@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
+const API_URL = `${import.meta.env.VITE_API_URL}/api`;
 function Dashboard() {
   const { user } = useSelector((state) => state.auth);
   const [applications, setApplications] = useState([]);
@@ -13,19 +13,19 @@ function Dashboard() {
 
   useEffect(() => {
     if (user?._id) {
-      axios.get(`http://localhost:8080/api/applications/user/${user._id}`)
+        axios.get(`${API_URL}/applications/user/${user._id}`)
         .then(res => setApplications(res.data))
         .catch(err => console.error('Applications fetch failed:', err));
 
-      axios.get(`http://localhost:8080/api/notifications/user/${user._id}`)
+      axios.get(`${API_URL}/api/notifications/user/${user._id}`)
         .then(res => setNotifications(res.data))
         .catch(err => console.error('Notifications fetch failed:', err));
 
-      axios.get(`http://localhost:8080/api/earnings/user/${user._id}`)
+      axios.get(`${API_URL}/api/earnings/user/${user._id}`)
         .then(res => setEarnings(res.data.total))
         .catch(err => console.error('Earnings fetch failed:', err));
 
-      axios.get(`http://localhost:8080/api/users/${user._id}/resume`)
+      axios.get(`${API_URL}/api/users/${user._id}/resume`)
         .then(res => setUploadedResumeUrl(res.data.resumeUrl || ''))
         .catch(err => console.error('Resume fetch failed:', err));
     }
@@ -39,7 +39,7 @@ function Dashboard() {
     formData.append('userId', user._id);
 
     try {
-      const res = await axios.post('http://localhost:8080/api/upload-resume', formData, {
+      const res = await axios.post('${API_URL}/api/upload-resume', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       setUploadStatus('Resume uploaded successfully!');
