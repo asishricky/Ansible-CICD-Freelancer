@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
+const API_URL = `${import.meta.env.VITE_API_URL}/api`;
 function Register() {
   const [formData, setFormData] = useState({
     name: '',
@@ -29,7 +29,7 @@ function Register() {
     }
 
     try {
-      const response = await fetch('http://localhost:8080/api/users/register', {
+      const response = await fetch(`${API_URL}/api/users/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
