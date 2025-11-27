@@ -5,6 +5,7 @@ function FreelancersSection() {
       name: 'Aarav Patel',
       title: 'Full-Stack Developer',
       image: '/profile1.jpg',
+      
       skills: 'React, Node.js, MongoDB',
       rating: 5,
     },
